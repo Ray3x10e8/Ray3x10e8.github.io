@@ -11,6 +11,21 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		  <style>
+    .paper-title {
+      cursor: pointer;
+      color: #007BFF;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .paper-abstract {
+      display: none;
+      padding: 10px 0;
+      background-color: #f8f9fa;
+      border-left: 2px solid #007BFF;
+    }
+  </style>
 	</head>
 	<body class="is-preload">
 
@@ -51,12 +66,32 @@
 							</article>
 
 						<!-- Work -->
-							<article id="work">
-								<h2 class="major">Research</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								<p>Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.</p>
-								<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat tempus.</p>
-							</article>
+  <article id="work">
+    <h2 class="major">Research</h2>
+    <p>I have been working extensively on quantum position verification and quantum key distribution. My publications are listed below.</p>
+
+    <!-- Research Papers -->
+    <p>
+      <span class="paper-title" onclick="toggleAbstract('paper1')">1. Security of a Continuous-Variable based Quantum Position Verification Protocol</span>
+      <div id="paper1" class="paper-abstract">
+        <p>Abstract: This paper addresses the security of quantum position verification protocols...</p>
+      </div>
+    </p>
+
+    <p>
+      <span class="paper-title" onclick="toggleAbstract('paper2')">2. Continuous-variable Quantum Position Verification secure against entangled attackers</span>
+      <div id="paper2" class="paper-abstract">
+        <p>Abstract: We explore continuous-variable quantum position verification in the presence of entangled attackers...</p>
+      </div>
+    </p>
+
+    <p>
+      <span class="paper-title" onclick="toggleAbstract('paper3')">3. Continuous-Variable Quantum Key Distribution with key rates far above the PLOB bound</span>
+      <div id="paper3" class="paper-abstract">
+        <p>Abstract: In this work, we present a new approach to quantum key distribution that achieves key rates significantly exceeding the PLOB bound...</p>
+      </div>
+    </p>
+  </article>
 
 						<!-- About -->
 							<article id="about">
@@ -356,6 +391,15 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
+			  <script>
+    function toggleAbstract(paperId) {
+      const paper = document.getElementById(paperId);
+      if (paper.style.display === "none" || paper.style.display === "") {
+        paper.style.display = "block";
+      } else {
+        paper.style.display = "none";
+      }
+    }
+  </script>
 	</body>
 </html>
