@@ -143,7 +143,7 @@
 <!-- Contact -->
 <article id="contact">
   <h2 class="major">Contact</h2>
-<form method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSfzfV-LQ24SuWGNeCDZ5LTkyNE0WWbfrBQcHHD-Yz6vR_XTpw/formResponse" target="_blank">
+<form method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSfzfV-LQ24SuWGNeCDZ5LTkyNE0WWbfrBQcHHD-Yz6vR_XTpw/formResponse">
   <div class="fields">
     <div class="field half">
       <label for="name">Name</label>
@@ -1254,9 +1254,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 </script>
 
 <script>
-// Previous JS code here
-
-// New JS code for handling form submission and showing toast
 document.querySelector("form").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the form from submitting immediately
 
@@ -1266,10 +1263,11 @@ document.querySelector("form").addEventListener("submit", function(event) {
 
     // Wait for the toast to display before submitting the form
     setTimeout(() => {
-        // Now submit the form
-        event.target.submit();
+        // Now submit the form to the correct action without opening a new tab
+        this.submit();
     }, 2000); // Delay submission for 2 seconds (adjust as necessary)
 });
+
 </script>
 
 
