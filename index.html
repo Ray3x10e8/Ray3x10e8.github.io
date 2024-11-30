@@ -34,6 +34,30 @@
     display: none;
 }
 
+.toast {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+			  
   </style>
 	</head>
 	<body class="is-preload">
@@ -139,6 +163,10 @@
     <li><input type="reset" value="Reset" /></li>
   </ul>
 </form>
+
+	<!-- Toast Message container -->
+<div id="toast" class="toast">Thank you for your message! We will get back to you soon.</div>
+
 
   <ul class="icons">
     <li><a href="https://www.instagram.com/ray3x10e8/" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
@@ -1206,5 +1234,24 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
       }
     }
   </script>
+		<script>
+  // Show a toast message after form submission
+  function showToast() {
+    var toast = document.getElementById("toast");
+    toast.className = "toast show";
+    setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+  }
+
+  // Handle the form submission
+  document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Simulate form submission (you can adjust as needed)
+    setTimeout(function() {
+      showToast(); // Show the thank you message
+    }, 500); // Wait a bit before showing the toast
+  });
+</script>
+
 	</body>
 </html>
