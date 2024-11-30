@@ -1235,7 +1235,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
     }
   </script>
 		
-		<script>
+<script>
   // Show a toast message after form submission
   function showToast() {
     var toast = document.getElementById("toast");
@@ -1245,18 +1245,32 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
     }, 3000);
   }
 
-  // Handle the form submission
+  // Handle the form submission using fetch
   document.querySelector("form").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the default form submission
 
     showToast(); // Show the toast message
 
-    // Wait for the toast to display before submitting the form
-    setTimeout(() => {
-      this.submit(); // Submit the form to the correct action
-    }, 2000); // Delay submission for 2 seconds
+    // Prepare form data
+    const formData = new FormData(this);
+
+    // Use fetch to submit form data to Google Forms
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSfzfV-LQ24SuWGNeCDZ5LTkyNE0WWbfrBQcHHD-Yz6vR_XTpw/formResponse", {
+      method: "POST",
+      body: formData,
+    })
+    .then(response => {
+      console.log('Form submitted successfully');
+      setTimeout(() => {
+        // Optionally, redirect or perform further actions
+      }, 2000);
+    })
+    .catch(error => {
+      console.error('Error submitting form:', error);
+    });
   });
 </script>
+
 
 
 	</body>
