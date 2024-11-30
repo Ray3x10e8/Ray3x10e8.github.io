@@ -1234,40 +1234,28 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
       }
     }
   </script>
+		
 		<script>
   // Show a toast message after form submission
   function showToast() {
     var toast = document.getElementById("toast");
-    toast.className = "toast show";
-    setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+    toast.classList.add("show");
+    setTimeout(function() {
+      toast.classList.remove("show");
+    }, 3000);
   }
 
   // Handle the form submission
   document.querySelector("form").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the default form submission
 
-    // Simulate form submission (you can adjust as needed)
-    setTimeout(function() {
-      showToast(); // Show the thank you message
-    }, 500); // Wait a bit before showing the toast
-  });
-</script>
-
-<script>
-document.querySelector("form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the form from submitting immediately
-
-    // Show the toast message
-    var toast = document.getElementById("toast");
-    toast.classList.add("show");
+    showToast(); // Show the toast message
 
     // Wait for the toast to display before submitting the form
     setTimeout(() => {
-        // Now submit the form to the correct action without opening a new tab
-        this.submit();
-    }, 2000); // Delay submission for 2 seconds (adjust as necessary)
-});
-
+      this.submit(); // Submit the form to the correct action
+    }, 2000); // Delay submission for 2 seconds
+  });
 </script>
 
 
