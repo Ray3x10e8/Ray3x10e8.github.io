@@ -1253,5 +1253,25 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
   });
 </script>
 
+<script>
+// Previous JS code here
+
+// New JS code for handling form submission and showing toast
+document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the form from submitting immediately
+
+    // Show the toast message
+    var toast = document.getElementById("toast");
+    toast.classList.add("show");
+
+    // Wait for the toast to display before submitting the form
+    setTimeout(() => {
+        // Now submit the form
+        event.target.submit();
+    }, 2000); // Delay submission for 2 seconds (adjust as necessary)
+});
+</script>
+
+
 	</body>
 </html>
