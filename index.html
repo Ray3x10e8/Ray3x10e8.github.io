@@ -119,26 +119,27 @@
 <!-- Contact -->
 <article id="contact">
   <h2 class="major">Contact</h2>
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfzfV-LQ24SuWGNeCDZ5LTkyNE0WWbfrBQcHHD-Yz6vR_XTpw/viewform?embedded=true" width="640" height="644" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    <div class="fields">
-      <div class="field half">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" />
-      </div>
-      <div class="field half">
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email" />
-      </div>
-      <div class="field">
-        <label for="message">Message</label>
-        <textarea name="message" id="message" rows="4"></textarea>
-      </div>
+<form method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSfzfV-LQ24SuWGNeCDZ5LTkyNE0WWbfrBQcHHD-Yz6vR_XTpw/formResponse" target="_blank">
+  <div class="fields">
+    <div class="field half">
+      <label for="name">Name</label>
+      <input type="text" name="entry.1224980461" id="name" required />
     </div>
-    <ul class="actions">
-      <li><input type="submit" value="Send Message" class="primary" /></li>
-      <li><input type="reset" value="Reset" /></li>
-    </ul>
-  </form>
+    <div class="field half">
+      <label for="email">Email</label>
+      <input type="email" name="entry.349238238" id="email" required />
+    </div>
+    <div class="field">
+      <label for="message">Message</label>
+      <textarea name="entry.1812683312" id="message" rows="4" required></textarea>
+    </div>
+  </div>
+  <ul class="actions">
+    <li><input type="submit" value="Send Message" class="primary" /></li>
+    <li><input type="reset" value="Reset" /></li>
+  </ul>
+</form>
+
   <ul class="icons">
     <li><a href="https://www.instagram.com/ray3x10e8/" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
     <li><a href="https://scholar.google.com/citations?user=UKeqleYAAAAJ" target="_blank"> <i class="fas fa-graduation-cap"></i><span class="label">Google Scholar</span></a></li>
