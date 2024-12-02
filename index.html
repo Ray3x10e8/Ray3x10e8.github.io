@@ -34,6 +34,33 @@
     display: none;
 }
 
+.icons a {
+  position: relative;
+}
+
+.icons a::after {
+  content: attr(title); /* Use the title attribute as tooltip text */
+  position: absolute;
+  bottom: 150%; /* Position above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.icons a:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+
 .toast {
   visibility: hidden;
   min-width: 250px;
@@ -276,10 +303,10 @@
 
 
   <ul class="icons">
-    <li><a href="https://www.instagram.com/ray3x10e8/" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-    <li><a href="https://scholar.google.com/citations?user=UKeqleYAAAAJ" target="_blank"> <i class="fas fa-graduation-cap"></i><span class="label">Google Scholar</span></a></li>
-    <li><a href="https://www.linkedin.com/in/arpan-akash-ray/" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-    <li><a href="https://www.tue.nl/en/research/researchers/arpan-ray" target="_blank"> <i class="fas fa-building"></i><span class="label">University Homepage</span></a></li>
+    <li><a href="https://www.instagram.com/ray3x10e8/" target="_blank" class="icon brands fa-instagram" title="Follow me on Instagram"><span class="label">Instagram</span></a></li>
+    <li><a href="https://scholar.google.com/citations?user=UKeqleYAAAAJ" target="_blank"> <i class="fas fa-graduation-cap" title="View my Google Scholar profile"></i><span class="label">Google Scholar</span></a></li>
+    <li><a href="https://www.linkedin.com/in/arpan-akash-ray/" target="_blank" class="icon brands fa-linkedin" title="Connect on LinkedIn"><span class="label">LinkedIn</span></a></li>
+    <li><a href="https://www.tue.nl/en/research/researchers/arpan-ray" target="_blank"> <i class="fas fa-building" title="Visit my university homepage"></i><span class="label">University Homepage</span></a></li>
   </ul>
 </article>
 
