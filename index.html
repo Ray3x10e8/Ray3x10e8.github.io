@@ -39,25 +39,25 @@
 }
 
 .icons a::after {
-  content: attr(dtitle); /* Use the title attribute as tooltip text */
+  content: attr(data-tooltip); /* The tooltip text */
   position: absolute;
-  bottom: 150%; /* Position above the icon */
+  top: 120%; /* Position the tooltip below the icon */
   left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.8);
+  transform: translateX(-50%); /* Center the tooltip horizontally */
+  background-color: #333;
   color: #fff;
   padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 12px;
+  border-radius: 4px;
   white-space: nowrap;
+  font-size: 12px;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1000;
 }
 
 .icons a:hover::after {
   opacity: 1;
-  visibility: visible;
 }
 
 
