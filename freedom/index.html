@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#100d18" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Freedom Countdown</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <main class="page-shell">
+      <section class="gate" id="gate" aria-labelledby="gate-title">
+        <h1 id="gate-title">Enter codeword</h1>
+
+        <form class="codeword-form" id="codeword-form" novalidate>
+          <label class="sr-only" for="codeword">Enter codeword</label>
+          <div class="input-row">
+            <input
+              id="codeword"
+              name="codeword"
+              type="password"
+              autocomplete="off"
+              autocapitalize="none"
+              spellcheck="false"
+              required
+              autofocus
+            />
+            <button type="submit">Enter</button>
+          </div>
+          <p class="form-message" id="form-message" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="countdown" id="countdown" aria-labelledby="countdown-title" hidden>
+        <p class="eyebrow">19 February 2027</p>
+        <h1 id="countdown-title" class="countdown-sentence">
+          <span class="time-grid" id="time-grid" role="timer"></span>
+          <span class="countdown-copy">left until freedom</span>
+        </h1>
+      </section>
+    </main>
+  </body>
+</html>
