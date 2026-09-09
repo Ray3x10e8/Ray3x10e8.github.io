@@ -204,6 +204,10 @@ input {
   gap: clamp(1rem, 4vw, 3.5rem);
 }
 
+.time-grid[data-mode="calendar"] {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .time-grid[data-mode="detailed"] {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(0.7rem, 2vw, 2rem);

@@ -3,7 +3,8 @@ const SECOND_IN_MILLISECONDS = 1000;
 const MINUTE_IN_MILLISECONDS = 60 * SECOND_IN_MILLISECONDS;
 const HOUR_IN_MILLISECONDS = 60 * MINUTE_IN_MILLISECONDS;
 const DAY_IN_MILLISECONDS = 24 * HOUR_IN_MILLISECONDS;
-const FIVE_WEEKS_IN_MILLISECONDS = 5 * 7 * DAY_IN_MILLISECONDS;
+const TWELVE_WEEKS_IN_MILLISECONDS = 12 * 7 * DAY_IN_MILLISECONDS;
+const TARGET_CALENDAR_DATE = new Date(Date.UTC(2027, 1, 19));
 
 // SHA-256 of the codeword. The codeword itself is not stored in the page source.
 const CODEWORD_HASH =
@@ -17,6 +18,12 @@ const message = document.querySelector("#form-message");
 const timeGrid = document.querySelector("#time-grid");
 const submitButton = form.querySelector("button[type='submit']");
 const numberFormatter = new Intl.NumberFormat("en");
+const amsterdamDateFormatter = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Europe/Amsterdam",
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+});
 
 function getUnitLabel(value, singular) {
   return value === 1 ? singular : `${singular}s`;
@@ -58,23 +65,77 @@ function renderCountdown(units, mode) {
   );
 }
 
-function updateCountdown() {
-  const millisecondsRemaining = Math.max(
+function getAmsterdamCalendarDate(date) {
+  const dateParts = {};
+
+  for (const part of amsterdamDateFormatter.formatToParts(date)) {
+    if (part.type !== "literal") {
+      dateParts[part.type] = Number(part.value);
+    }
+  }
+
+  return new Date(
+    Date.UTC(dateParts.year, dateParts.month - 1, dateParts.day),
+  );
+}
+
+function addCalendarMonths(date, monthsToAdd) {
+  const originalDay = date.getUTCDate();
+  const unnormalisedMonth = date.getUTCMonth() + monthsToAdd;
+  const year = date.getUTCFullYear() + Math.floor(unnormalisedMonth / 12);
+  const month = ((unnormalisedMonth % 12) + 12) % 12;
+  const finalDayOfMonth = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+
+  return new Date(
+    Date.UTC(year, month, Math.min(originalDay, finalDayOfMonth)),
+  );
+}
+
+function getCalendarBreakdown(now) {
+  const currentDate = getAmsterdamCalendarDate(now);
+  let months =
+    (TARGET_CALENDAR_DATE.getUTCFullYear() - currentDate.getUTCFullYear()) * 12 +
+    TARGET_CALENDAR_DATE.getUTCMonth() -
+    currentDate.getUTCMonth();
+  let monthAnchor = addCalendarMonths(currentDate, months);
+
+  while (monthAnchor > TARGET_CALENDAR_DATE) {
+    months -= 1;
+    monthAnchor = addCalendarMonths(currentDate, months);
+  }
+
+  const remainingDays = Math.max(
     0,
-    TARGET_DATE.getTime() - Date.now(),
+    Math.floor(
+      (TARGET_CALENDAR_DATE.getTime() - monthAnchor.getTime()) /
+        DAY_IN_MILLISECONDS,
+    ),
   );
 
-  if (millisecondsRemaining > FIVE_WEEKS_IN_MILLISECONDS) {
-    const totalDays = Math.floor(millisecondsRemaining / DAY_IN_MILLISECONDS);
-    const weeks = Math.floor(totalDays / 7);
-    const days = totalDays % 7;
+  return {
+    months,
+    weeks: Math.floor(remainingDays / 7),
+    days: remainingDays % 7,
+  };
+}
+
+function updateCountdown() {
+  const now = new Date();
+  const millisecondsRemaining = Math.max(
+    0,
+    TARGET_DATE.getTime() - now.getTime(),
+  );
+
+  if (millisecondsRemaining > TWELVE_WEEKS_IN_MILLISECONDS) {
+    const { months, weeks, days } = getCalendarBreakdown(now);
 
     renderCountdown(
       [
+        { value: months, singular: "month" },
         { value: weeks, singular: "week" },
         { value: days, singular: "day" },
       ],
-      "weeks",
+      "calendar",
     );
     return;
   }
